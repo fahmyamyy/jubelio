@@ -57,7 +57,7 @@ export const initialFetch = async () => {
 
                 if (!sku.includes(product[key].sellerPrdCd['_text'])) {
                     sku.push(product[key].sellerPrdCd['_text'])
-                    // products.push(productTemp)
+
                     var productTemp = {
                         'sku': product[key].sellerPrdCd['_text'],
                         'name': product[key].prdNm['_text'],

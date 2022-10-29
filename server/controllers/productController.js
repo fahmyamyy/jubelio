@@ -40,3 +40,21 @@ export const createProduct = (param) => {
     });
 }
 
+export const updateProduct = (param) => {
+    DB.oneOrNone('UPDATE public.products SET product_name=$1, product_price=$2, product_description=$3 WHERE product_sku=$4',
+        [param.name, param.price, param.description, param.sku,]
+    ).then(() => {
+        console.log('Product Updated');
+    }).catch(err => {
+        console.log('ERROR:', err);
+    });
+}
+
+export const deleteProduct = (param) => {
+    DB.oneOrNone(`DELETE FROM public.products WHERE product_sku='${param}'`
+    ).then(() => {
+        console.log('Product Deleted');
+    }).catch(err => {
+        console.log('ERROR:', err);
+    });
+}

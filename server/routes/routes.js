@@ -1,4 +1,4 @@
-import { getProduct, createProduct } from "../controllers/productController.js";
+import { getProduct, getDetails, createProduct, updateProduct, deleteProduct } from "../controllers/productController.js";
 
 const path = '/api/product'
 
@@ -13,12 +13,12 @@ export const getRoutes = () => {
     return res
 }
 
-export const getDetails = () => {
+export const detailRoutes = () => {
     const res = {
         method: 'POST',
-        path: path + '/{id}',
+        path: path + '/{sku}',
         handler: (req, h) => {
-            const id = req.params.id
+            const id = req.params.sku
             return getDetails(id)
         }
     }
@@ -31,6 +31,28 @@ export const createRoutes = () => {
         path: path,
         handler: (req, h) => {
             return createProduct(req.payload)
+        }
+    }
+    return res
+}
+
+export const updateRoutes = () => {
+    const res = {
+        method: 'POST',
+        path: path + '/{sku}',
+        handler: (req, h) => {
+            return updateProduct(req.payload)
+        }
+    }
+    return res
+}
+
+export const deleteRoutes = () => {
+    const res = {
+        method: 'POST',
+        path: path + '/{sku}',
+        handler: (req, h) => {
+            return deleteProduct(req.payload)
         }
     }
     return res

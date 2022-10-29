@@ -1,6 +1,6 @@
 import Hapi from '@hapi/hapi';
-import migrate, { initialFetch } from './db/init.js';
-import { getRoutes, createRoutes } from './routes/routes.js';
+import migrate from './db/init.js';
+import { getRoutes, detailRoutes, createRoutes, updateRoutes, deleteRoutes } from './routes/routes.js';
 
 const server = Hapi.server({
     port: 5000,
@@ -20,6 +20,9 @@ const server = Hapi.server({
 migrate()
 server.route(getRoutes());
 server.route(createRoutes());
+server.route(detailRoutes());
+server.route(updateRoutes());
+server.route(deleteRoutes());
 
 // server.route(
 //     {
